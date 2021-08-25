@@ -23,7 +23,6 @@ function App() {
       <Footer />    
     </div>
     </Router>
-    //이거 주석처리할거에용
     // <div className="App">
     //   <header className="App-header">
     //     <img src={logo} className="App-logo" alt="logo" />
