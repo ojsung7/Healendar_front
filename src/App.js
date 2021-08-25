@@ -23,6 +23,7 @@ function App() {
       <Footer />    
     </div>
     </Router>
+    //이건 내가 테스트
     // <div className="App">
     //   <header className="App-header">
     //     <img src={logo} className="App-logo" alt="logo" />
