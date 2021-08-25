@@ -23,6 +23,7 @@ function App() {
       <Footer />    
     </div>
     </Router>
+    //주석처리
     // <div className="App">
     //   <header className="App-header">
     //     <img src={logo} className="App-logo" alt="logo" />
