@@ -22,9 +22,3 @@ function Content2(props) {
 export default Content2;
 
 
-
-//axios - api서버랑 서로 통신해서 데이터 주고, 요청하는것을 할 수 있게 
-// async, await - 비동기(코드가 순차적으로 실행) //동기(한꺼번에 같이 실행)
-// await 있는 코드가 실행될때까지 기다린다!!
-
-//mvc패턴에대해 알아보기
