@@ -23,7 +23,7 @@ function App() {
       <Footer />    
     </div>
     </Router>
-    //주석처리
+    //주석처리할거라구요
     // <div className="App">
     //   <header className="App-header">
     //     <img src={logo} className="App-logo" alt="logo" />
