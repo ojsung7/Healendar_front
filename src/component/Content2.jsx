@@ -11,7 +11,7 @@ function Content2(props) {
     return (
         <div className='content2'>
             {content.map((content) => (
-                <div>
+                <div key={content.id}>
                     {content.title}
                 </div>
             ))}
