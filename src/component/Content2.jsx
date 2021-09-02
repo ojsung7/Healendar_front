@@ -6,7 +6,7 @@ function Content2(props) {
     useEffect(async () => {
         const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
         setContent(response.data);
-        console.log(response.data);
+        //console.log(response.data);
     }, [])
     return (
         <div className='content2'>

@@ -5,10 +5,13 @@ import Content2 from './Content2';
 function Calendar(props) {
     const [getDate, setDate] = useState(moment());
 
+    //요청할 날짜
+    //const [reqDate, setReqdate] = useState();
+
     useEffect(() => {
 
     }, [])
-    const test = (e) =>{
+    const test = (e) => {
         console.log(e.target.id)
     }
 
@@ -27,19 +30,28 @@ function Calendar(props) {
                         let days = today.clone().startOf('year').week(week).startOf('week').add(index, 'day');   //index(0~6)로 day+index 하면서 한 주 기록
                         if (moment().format('YYYYMMDD') === days.format('YYYYMMDD')) {  //오늘
                             return (
-                                <td id={days.format('D')} onClick={test} key={index} style={{ backgroundColor: 'skyblue' }}>
+                                <td id={getDate.format('YYYY-MM-') + days.format('DD')} onClick={test} key={index} style={{ backgroundColor: 'skyblue' }}>
                                     {days.format('D')}
                                 </td>
                             );
                         } else if (days.format('MM') !== today.format('MM')) {  //이번 달 아닌 날짜
-                            return (
-                                <td id={days.format('D')} onClick={test} key={index} style={{ backgroundColor: '#dcdcdc' }}>
-                                    {days.format('D')}
-                                </td>
-                            );
+                            if (days.format('DD') > 20) {
+                                return (
+                                    <td id={getDate.format('YYYY-') + getDate.clone().subtract(1, 'month').format("MM-") + days.format('DD')} onClick={test} key={index} style={{ backgroundColor: '#dcdcdc' }}>
+                                        {days.format('D')}
+                                    </td>
+                                )
+                            }
+                            else if (days.format('DD') < 5) {
+                                return (
+                                    <td id={getDate.format('YYYY-') + getDate.clone().add(1, 'month').format("MM-") + days.format('DD')} onClick={test} key={index} style={{ backgroundColor: '#dcdcdc' }}>
+                                        {days.format('D')}
+                                    </td>
+                                )
+                            }
                         } else {
                             return (
-                                <td id={days.format('D')} onClick={test} key={index} >
+                                <td id={getDate.format('YYYY-MM-') + days.format('DD')} onClick={test} key={index} >
                                     {days.format('D')}
                                 </td>
                             );

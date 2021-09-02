@@ -5,7 +5,7 @@ import Calendar from './component/Calendar';
 import Footer from './component/Footer';
 import Header from './component/Header';
 import Menu from './component/Menu';
-import {BrowserRouter as Router, Route, Switch, useHistory} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 function App() {
   return (
