@@ -6,13 +6,13 @@ function Calendar(props) {
     const [getDate, setDate] = useState(moment());
 
     //요청할 날짜
-    //const [reqDate, setReqdate] = useState();
+    const [reqDate, setReqdate] = useState();
 
     useEffect(() => {
 
     }, [])
     const test = (e) => {
-        console.log(e.target.id)
+        setReqdate(e.target.id);
     }
 
 
@@ -73,14 +73,19 @@ function Calendar(props) {
                     <h1>{today.format('YYYY.MM')}</h1>
                     <button onClick={() => { setDate(getDate.clone().add(1, 'month')) }}>next month</button>
                 </div>
-
                 <table>
                     <tbody>
                         {calArr()}
                     </tbody>
                 </table>
             </div>
-            <Content2 />
+            
+            {/*클릭한 날짜가 있을 때 Content2 컴포넌트 출력*/}
+            {reqDate!=null 
+            ? <Content2 />
+            : null
+            }
+            
         </>
     );
 }
