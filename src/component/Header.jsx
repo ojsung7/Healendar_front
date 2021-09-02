@@ -2,14 +2,40 @@ import React, { useEffect, useState } from 'react';
 
 function Header(props) {
     const[count,setCount] = useState(0);  //count 변수 0으로 초기화
-    useEffect(()=>{
+    const [inputID, setInputID] = useState('')
+    const [inputPW, setInputPW] = useState('')
+    useEffect(() => {
         setCount(1)
-    },[])
-    const handle = (e)=>{
-        setCount(count+1)
+    }, [])
+    const handle = (e) => {
+        setCount(count + 1)
+    }
+    const handleInputID = (e) => {
+        setInputID(e.target.value)
+    }
+    const handleInputPW = (e) => {
+        setInputPW(e.target.value)
+    }
+    const handleLogin = (e) => {
+        console.log('login ?')
     }
     return (
-        <header className='App-header'>Work-out <button onClick={handle}>Butt {count}</button></header>
+        <header className='App-header'>Work-out <button onClick={handle}>Butt {count}</button>
+            <div className='Login'>
+                <div className='ID'>
+                    <label htmlFor='input_id'>ID : </label>
+                    <input type='text' name='input_id' value={inputID} onChange={handleInputID} />
+                </div>
+                <div className='PW'>
+                    <label htmlFor='input_pw'>PW : </label>
+                    <input type='text' name='input_pw' value={inputPW} onChange={handleInputPW} />
+                </div>
+                <div className='loginBut'>
+                    <button onClick={handleLogin}>Login</button>
+                </div>
+            </div>
+        </header>
+
     );
 }
 
