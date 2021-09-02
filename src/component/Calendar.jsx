@@ -68,24 +68,38 @@ function Calendar(props) {
     return (
         <>
             <div className='Calendar'>
-                <div className='CalTop'>
-                    <button onClick={() => { setDate(getDate.clone().subtract(1, 'month')) }}>previous month</button>
-                    <h1>{today.format('YYYY.MM')}</h1>
-                    <button onClick={() => { setDate(getDate.clone().add(1, 'month')) }}>next month</button>
+                <div className='realCal'>
+                    <div className='CalTop'>
+                        <button onClick={() => { setDate(getDate.clone().subtract(1, 'month')) }}>previous month</button>
+                        <h1>{today.format('YYYY.MM')}</h1>
+                        <button onClick={() => { setDate(getDate.clone().add(1, 'month')) }}>next month</button>
+                    </div>
+                    <table>
+                        <tbody>
+                            {calArr()}
+                        </tbody>
+                    </table>
                 </div>
-                <table>
-                    <tbody>
-                        {calArr()}
-                    </tbody>
-                </table>
+
+                {/*클릭한 날짜가 있을 때 Content2 컴포넌트 출력*/}
+                {reqDate != null
+                    ? <div className='AboutToday'>
+                        <label><input type="checkbox"></input>스쿼트</label>
+                        <label><input type="checkbox"></input>윗몸일으키기</label>
+                        <label><input type="checkbox"></input>걷기</label>
+                        <label><input type="checkbox"></input>달리기</label>
+                        <label><input type="checkbox"></input>아령</label>
+                    </div>
+                    : null}
             </div>
-            
-            {/*클릭한 날짜가 있을 때 Content2 컴포넌트 출력*/}
-            {reqDate!=null 
-            ? <Content2 />
-            : null
-            }
-            
+
+
+
+
+            <Content2 />
+
+
+
         </>
     );
 }
