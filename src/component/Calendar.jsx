@@ -42,7 +42,7 @@ function Calendar(props) {
                                     </td>
                                 )
                             }
-                            else if (days.format('DD') < 5) {
+                            else if (days.format('DD') < 10) {
                                 return (
                                     <td id={getDate.format('YYYY-') + getDate.clone().add(1, 'month').format("MM-") + days.format('DD')} onClick={test} key={index} style={{ backgroundColor: '#dcdcdc' }}>
                                         {days.format('D')}
