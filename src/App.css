@@ -5,28 +5,28 @@
 .App-header .Login{
   float: right;
 }
-.middle{
-  display: flex; 
+/* .middle{
   background-color: pink;
   margin-top: 5px;
   margin-bottom: 5px;
-}
+} */
 .main{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
   /* align-items: stretch; */
+  align-items: center;
   margin-left: 10px;
   margin-right: 10px;
+  /* height: 2000px; */
 }
-.Menu{
+/* .Menu{
   margin-left: 10px;
   width: 170px;
   height: 700px; 
   background-color: #b19d9d;
-}
+} */
 .Calendar{
-  flex-grow: 1;
+  /* flex-grow: 1; */
   display: flex;
   flex-direction: row;
   height: 700px;
@@ -64,7 +64,7 @@
   height: 30px;
 }
 .Calendar table{
-  display: flex;
+  /* display: flex; */
   width: 500px;
   height: 500px;
 }
@@ -79,8 +79,8 @@
 .Calendar td{
   display: flex;
   border:1px solid gray;
-  width: 80px;
-  height: 60px;
+  width: 120px;
+  height: 100px;
 }
 .content2{
   flex-grow:1;

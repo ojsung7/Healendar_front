@@ -97,8 +97,6 @@ function Calendar(props) {
 
 
 
-            <Content2 />
-
 
 
         </>

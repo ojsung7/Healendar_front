@@ -5,22 +5,20 @@ import Calendar from './component/Calendar';
 import Footer from './component/Footer';
 import Header from './component/Header';
 import Menu from './component/Menu';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
     <Router basename={"/"}>
-    <div className="App">
-      <Header />
-      <div className='middle'>
+      <div className="App">
+        <Header />
         <div className='main'>
           <Switch>
-          <Route path="/" component={Calendar} exact/>                 
+            <Route path="/" component={Calendar} exact />                 a
           </Switch>
         </div>
+        <Footer />
       </div>
-      <Footer />    
-    </div>
     </Router>
   );
 }
