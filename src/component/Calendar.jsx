@@ -12,6 +12,7 @@ function Calendar(props) {
 
     }, [])
     const test = (e) => {
+        console.log(e.target.id);
         setReqdate(e.target.id);
     }
 

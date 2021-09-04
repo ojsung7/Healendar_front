@@ -13,7 +13,6 @@ function App() {
     <div className="App">
       <Header />
       <div className='middle'>
-        <Menu />
         <div className='main'>
           <Switch>
           <Route path="/" component={Calendar} exact/>                 
