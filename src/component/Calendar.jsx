@@ -7,13 +7,20 @@ function Calendar(props) {
 
     //요청할 날짜
     const [reqDate, setReqdate] = useState();
+    const [inputExer, setExer] = useState('');
+    // const [ExerTypes, setType] = useState([])
 
     useEffect(() => {
-
     }, [])
     const test = (e) => {
-        console.log(e.target.id);
         setReqdate(e.target.id);
+        console.log(reqDate)
+    }
+    const inputExercise = (e) => {
+        setExer(e.target.value)
+    }
+    const AddType = (e) => {
+        console.log('added')
     }
 
 
@@ -31,21 +38,21 @@ function Calendar(props) {
                         let days = today.clone().startOf('year').week(week).startOf('week').add(index, 'day');   //index(0~6)로 day+index 하면서 한 주 기록
                         if (moment().format('YYYYMMDD') === days.format('YYYYMMDD')) {  //오늘
                             return (
-                                <td id={getDate.format('YYYY-MM-') + days.format('DD')} onClick={test} key={index} style={{ backgroundColor: 'skyblue' }}>
+                                <td id={getDate.format('YYYY-MM-') + days.format('DD')} onClick={test} key={index} style={{ backgroundColor: '#FFEBFE' }}>
                                     {days.format('D')}
                                 </td>
                             );
                         } else if (days.format('MM') !== today.format('MM')) {  //이번 달 아닌 날짜
                             if (days.format('DD') > 20) {
                                 return (
-                                    <td id={getDate.format('YYYY-') + getDate.clone().subtract(1, 'month').format("MM-") + days.format('DD')} onClick={test} key={index} style={{ backgroundColor: '#dcdcdc' }}>
+                                    <td id={getDate.format('YYYY-') + getDate.clone().subtract(1, 'month').format("MM-") + days.format('DD')} onClick={test} key={index} style={{ backgroundColor: '#F6F6F6' }}>
                                         {days.format('D')}
                                     </td>
                                 )
                             }
                             else if (days.format('DD') < 10) {
                                 return (
-                                    <td id={getDate.format('YYYY-') + getDate.clone().add(1, 'month').format("MM-") + days.format('DD')} onClick={test} key={index} style={{ backgroundColor: '#dcdcdc' }}>
+                                    <td id={getDate.format('YYYY-') + getDate.clone().add(1, 'month').format("MM-") + days.format('DD')} onClick={test} key={index} style={{ backgroundColor: '#F6F6F6' }}>
                                         {days.format('D')}
                                     </td>
                                 )
@@ -85,17 +92,20 @@ function Calendar(props) {
                 {/*클릭한 날짜가 있을 때 Content2 컴포넌트 출력*/}
                 {reqDate != null
                     ? <div className='AboutToday'>
+                        <h3>{reqDate}</h3>
                         <label><input type="checkbox"></input>스쿼트</label>
                         <label><input type="checkbox"></input>윗몸일으키기</label>
                         <label><input type="checkbox"></input>걷기</label>
                         <label><input type="checkbox"></input>달리기</label>
                         <label><input type="checkbox"></input>아령</label>
+
+                        <div className='Adding'>
+                            <input type='text' name='input_detail' value={inputExer} onChange={inputExercise} />                        
+                            <button onClick={AddType}>Add</button>
+                        </div>
                     </div>
                     : null}
             </div>
-
-
-
 
 
 

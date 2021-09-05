@@ -1,9 +1,45 @@
 .App-header{
-  height: 100px;
-  background-color: rgb(92, 117, 93);
+  height: 120px;
+  background-color: #FFEBFE;
+  /* text-align: center; */
 }
-.App-header .Login{
+.App-header span{
+  font-size: 50px;
+  text-align: center;
+}
+.Login{
+  height: 110px;
   float: right;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+.LoginInput{
+  color: #C9A3B6;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.LoginInput input{
+  border: 1px solid #C9A3B6;
+  background-color: #FFFFFF;
+  width: 140px;
+  height: 17px; 
+}
+.loginBut button{
+  border: 1px solid #C9A3B6;
+  height: 44px;
+  background-color: #FFFFFF;
+  color: #C9A3B6;
+  margin-left: 3px;
+}
+.joinBut button{
+  border: 1px solid #C9A3B6;
+  height: 44px;
+  background-color: #C9A3B6;
+  color: #FFFFFF;
+  margin-left: 3px;
+  margin-right: 4px;
 }
 /* .middle{
   background-color: pink;
@@ -15,8 +51,8 @@
   /* flex-direction: column; */
   /* align-items: stretch; */
   align-items: center;
-  margin-left: 10px;
-  margin-right: 10px;
+  /* margin-left: 10px;
+  margin-right: 10px; */
   /* height: 2000px; */
 }
 /* .Menu{
@@ -26,16 +62,15 @@
   background-color: #b19d9d;
 } */
 .Calendar{
-  /* flex-grow: 1; */
   display: flex;
   flex-direction: row;
   height: 700px;
-  margin-right: 10px;
-  margin-left: 10px;
+  margin-right: 20px;
+  margin-left: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
-  background-color: #f8f07e;
-  font-size: 15px;
+  background-color: #FFFBFE;
+  font-size: 19px;
 }
 .Calendar .realCal{
   display: flex;
@@ -44,22 +79,17 @@
   align-items: center;
   justify-content: space-evenly;
 }
-.AboutToday{
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-}
 .Calendar .CalTop{
   display: flex;
-  /* flex-direction: row; */
+  flex-direction: row;
   align-items: center;
-  /* justify-content: flex-end; */
 }
-.Calendar button{
-  margin-right: 100px;
-  margin-left: 100px;
+.CalTop button{
+  border: 1px solid #EDC7DA;
+  background-color: #EDC7DA;
+  color: #FFFFFF;
+  margin-right: 90px;
+  margin-left: 90px;
   width: 110px;
   height: 30px;
 }
@@ -82,12 +112,48 @@
   width: 120px;
   height: 100px;
 }
+.AboutToday{
+  background-color: #EBF7FF;
+  height: 500px;
+  flex-grow: 0.6;
+  display: flex;
+  flex-direction: column;
+  /* align-items: baseline; */
+  /* justify-content: center; */
+  margin-top: 100px;
+}
+.AboutToday h3{
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 35px;
+}
+.AboutToday input{
+  margin-left: 15px;
+}
+.Adding {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  height: 25px;
+  margin-top: 20px;
+}
+.Adding button{
+  border: 1px solid #C9A3B6;
+  background-color: #FFFFFF;
+  color: #C9A3B6;
+}
+.Adding input{
+  border: 1px solid #C9A3B6;
+  background-color: #FFFFFF;
+  width: 250px;
+}
 .content2{
   flex-grow:1;
   background-color: #93f0f7;
 }
 .footer{
   height: 100px;
-  background-color: aquamarine;
+  background-color: #F5F5F5;
 }
 /* flex 참고 : https://studiomeal.com/archives/197 */
