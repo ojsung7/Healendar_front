@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 function Header(props) {
@@ -16,8 +17,13 @@ function Header(props) {
     const handleInputPW = (e) => {
         setInputPW(e.target.value)
     }
-    const handleLogin = (e) => {
-        console.log('login ?')
+    const handleLogin = async (e) => {
+        const parm = {
+            id:inputID,
+            pw:inputPW
+        }
+        const data = await axios.post("http://localhost:8080/main/auth", parm);
+        console.log(data.data);
     }
     const handleJoin = (e) =>{
         console.log('login input window')
