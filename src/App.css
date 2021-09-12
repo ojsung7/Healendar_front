@@ -93,20 +93,19 @@
   width: 110px;
   height: 30px;
 }
-.Calendar table{
-  /* display: flex; */
+.realCal table{
   width: 500px;
   height: 500px;
 }
-.Calendar table tbody{
+.realCal table tbody{
   display: flex;
   flex-direction: column;
 }
-.Calendar tr{
+.realCal tr{
   display: flex;
   flex-direction: row;
 }
-.Calendar td{
+.realCal td{
   display: flex;
   border:1px solid gray;
   width: 120px;
@@ -128,16 +127,37 @@
   margin-top: 30px;
   margin-bottom: 35px;
 }
-.AboutToday input{
-  margin-left: 15px;
-}
 .Adding {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  height: 25px;
+  flex-direction: column;
+  justify-content: center;
   margin-top: 20px;
+  margin-right: 30px;
+  margin-left: 30px;
+  background-color: yellow;
 }
+.Adding table{
+  background-color: aquamarine;
+}
+
+/* .Adding .check{
+  width: 100px;
+} */
+/* .Adding .title{
+  width: 50%
+}
+.Adding .count{
+  width: 30%;
+} */
+/* .Adding .delete{
+  width: 100px;
+} */
+.AboutToday th{
+  border:1px solid #C9A3B6;
+}
+/* .AboutToday input{
+  margin-left: 15px;
+} */
 .Adding button{
   border: 1px solid #C9A3B6;
   background-color: #FFFFFF;
