@@ -1,16 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import Content2 from './Content2';
+import axios from 'axios';
 
 function Calendar(props) {
     const [getDate, setDate] = useState(moment());
+    const [getDBdata, setDBdata] = useState([{
+        gid: '',
+        id: '',
+        date: '',
+        todo: ''
+    }])
 
     //요청할 날짜
     const [reqDate, setReqdate] = useState();
     const [inputExer, setExer] = useState('');
-    // const [ExerTypes, setType] = useState([])
+    const [inputCount, setCount] = useState('');
 
-    useEffect(() => {
+    const [tabletest, getvalue] = useState(['1','2','3']);
+    const [tabletest2, getvalue2] = useState([['스쿼트'],['45회'],['1']]);
+
+    useEffect(async () => {
+        try {
+            const data = await axios.post("http://localhost:8080/todo/get");
+            for (let i = 0; i < data.data.length; i++) {
+                setDBdata(getDBdata.push(data.data[i]));
+            }
+            console.log(getDBdata)
+
+        } catch (e) {
+            console.error(e.message)
+        }
+
     }, [])
     const test = (e) => {
         setReqdate(e.target.id);
@@ -19,9 +40,17 @@ function Calendar(props) {
     const inputExercise = (e) => {
         setExer(e.target.value)
     }
+    const inputExerCount = (e) => {
+        setCount(e.target.value)
+    }
     const AddType = (e) => {
+        getvalue(tabletest2[0].push(inputExer))
+        getvalue(tabletest2[1].push(inputCount))
+        getvalue(tabletest2[2].push('0'))
+        console.log(tabletest2)
         console.log('added')
     }
+
 
 
     const today = getDate;
@@ -71,7 +100,31 @@ function Calendar(props) {
 
         return result;
     }
-
+    //const tableheader = ["√", "운동명", "count/time", "×"];
+    
+    // const finddate = (target) => {
+    //     console.log(getDBdata.length)
+    //     for (let i = 0; i < getDBdata.length; i++) {
+    //         console.log(getDBdata[i].date, getDBdata[i].todo);
+    //         if (getDBdata[i].date == reqDate) return getDBdata[i].todo;
+    //     }
+    //     const nonedata = ['none'];
+    //     return nonedata;
+    // }
+    const todotable = () => {
+        let tabledata = []
+        for(let i=0;i<tabletest2[0].length;i++){
+            tabledata = tabledata.concat(
+                <tr>
+                    <td><input type='checkbox' /></td>
+                    <td>{tabletest2[0][i]}</td>
+                    <td>{tabletest2[1][i]}</td>
+                    <td>{tabletest2[2][i]}</td>
+                </tr>
+            )
+        }
+        return tabledata
+    }
 
     return (
         <>
@@ -93,16 +146,53 @@ function Calendar(props) {
                 {reqDate != null
                     ? <div className='AboutToday'>
                         <h3>{reqDate}</h3>
-                        <label><input type="checkbox"></input>스쿼트</label>
+                        <div className='Adding'>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th className='check'>√</th>
+                                        <th className='title'>운동명</th>
+                                        <th className='count'>count/time</th>
+                                        <th className='delete'>×</th>
+                                        {/* {tableheader.map(i => <th>{i}</th>)} */}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td><input type='text' name='input_name' value={inputExer} onChange={inputExercise} /></td>
+                                        <td><input type='text' name='input_count' value={inputCount} onChange={inputExerCount} /></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colSpan='4'><button onClick={AddType}>Add</button></td>
+                                    </tr>
+                                    
+                                    {todotable()}
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                        {/* {finddate(reqDate).map((item) => (
+                            <label><input type="checkbox"></input>
+                                {item}
+                            </label>
+                        ))
+                        } */}
+                        {/* {finddate(reqDate).map((item) => (
+                                <label><input type="checkbox"></input>
+                                    {item}
+                                </label>
+                            ))
+                            } */}
+                        {/* <label><input type="checkbox"></input>스쿼트</label>
                         <label><input type="checkbox"></input>윗몸일으키기</label>
                         <label><input type="checkbox"></input>걷기</label>
                         <label><input type="checkbox"></input>달리기</label>
-                        <label><input type="checkbox"></input>아령</label>
+                        <label><input type="checkbox"></input>아령</label> */}
 
-                        <div className='Adding'>
-                            <input type='text' name='input_detail' value={inputExer} onChange={inputExercise} />                        
-                            <button onClick={AddType}>Add</button>
-                        </div>
+
                     </div>
                     : null}
             </div>
