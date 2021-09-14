@@ -5,20 +5,16 @@ import axios from 'axios';
 
 function Calendar(props) {
     const [getDate, setDate] = useState(moment());
-    const [getDBdata, setDBdata] = useState([{
-        gid: '',
-        id: '',
-        date: '',
-        todo: ''
-    }])
+    const [getDBdata, setDBdata] = useState([])
 
     //요청할 날짜
     const [reqDate, setReqdate] = useState();
     const [inputExer, setExer] = useState('');
     const [inputCount, setCount] = useState('');
 
-    const [tabletest, getvalue] = useState(['1','2','3']);
-    const [tabletest2, getvalue2] = useState([['스쿼트'],['45회'],['1']]);
+    //const [tabletest, getvalue] = useState(['1','2','3']);
+    //const [tabletest2, getvalue2] = useState([['스쿼트'], ['45회'], ['1']]);
+    const [testsplit, getvalue3] = useState([[],[],[]]);
 
     useEffect(async () => {
         try {
@@ -28,6 +24,7 @@ function Calendar(props) {
             }
             console.log(getDBdata)
 
+
         } catch (e) {
             console.error(e.message)
         }
@@ -36,6 +33,28 @@ function Calendar(props) {
     const test = (e) => {
         setReqdate(e.target.id);
         console.log(reqDate)
+
+        // axios.post('http://localhost:8080/todo/findTodo',{
+        //     id: "test",
+        //     date: "2021-09-21"
+        // })
+        // .then(function(response){
+        //     console.log(response.data);
+        //     let tempstring = [(response.data.exercise).split(', '), (response.data.done).split(','), (response.data.checked).split(',')]
+        //     //getvalue3(tempstring)
+        //     for(let i=0;i<tempstring[0].length;i++){
+        //         getvalue3(testsplit[0].push(tempstring[0][i]))
+        //         getvalue3(testsplit[1].push(tempstring[1][i]))
+        //         getvalue3(testsplit[2].push(tempstring[2][i]))
+        //     }
+     
+
+        // })
+        // .catch(function(error){
+        //     console.log(error);
+        // })
+       
+
     }
     const inputExercise = (e) => {
         setExer(e.target.value)
@@ -44,10 +63,10 @@ function Calendar(props) {
         setCount(e.target.value)
     }
     const AddType = (e) => {
-        getvalue(tabletest2[0].push(inputExer))
-        getvalue(tabletest2[1].push(inputCount))
-        getvalue(tabletest2[2].push('0'))
-        console.log(tabletest2)
+        // getvalue2(tabletest2[0].push(inputExer))
+        // getvalue2(tabletest2[1].push(inputCount))
+        // getvalue2(tabletest2[2].push('0'))
+        // console.log(tabletest2)
         console.log('added')
     }
 
@@ -101,7 +120,7 @@ function Calendar(props) {
         return result;
     }
     //const tableheader = ["√", "운동명", "count/time", "×"];
-    
+
     // const finddate = (target) => {
     //     console.log(getDBdata.length)
     //     for (let i = 0; i < getDBdata.length; i++) {
@@ -111,19 +130,43 @@ function Calendar(props) {
     //     const nonedata = ['none'];
     //     return nonedata;
     // }
+
     const todotable = () => {
         let tabledata = []
-        for(let i=0;i<tabletest2[0].length;i++){
+        let tempstring = [[], [], []]
+
+        axios.post('http://localhost:8080/todo/findTodo', {
+            id: "test",
+            date: "2021-09-21"
+        }).then(function (response) {
+            tempstring = [(response.data.exercise).split(', '), (response.data.done).split(','), (response.data.checked).split(',')]
+            getvalue3(tempstring)
+            //console.log(testsplit[0])
+            // for(let i=0;i<tempstring[0].length;i++){
+            //     getvalue3(testsplit.exercise.push(tempstring[0][i]))
+            //     getvalue3(testsplit.count.push(tempstring[1][i]))
+            //     getvalue3(testsplit.check.push(tempstring[2][i]))
+            // }
+        }).catch(function (error) {
+            console.log(error);
+        })
+
+        //tempstring = [(response.data.exercise).split(', '), (response.data.done).split(','), (response.data.checked).split(',')]
+
+        for(let i=0;i<testsplit[0].length;i++){
             tabledata = tabledata.concat(
                 <tr>
-                    <td><input type='checkbox' /></td>
-                    <td>{tabletest2[0][i]}</td>
-                    <td>{tabletest2[1][i]}</td>
-                    <td>{tabletest2[2][i]}</td>
+                    <td><input type='checkbox'  /></td>
+                    <td>{testsplit[0][i]}</td>
+                    <td>{testsplit[1][i]}</td>
+                    <td>{testsplit[2][i]}</td>
                 </tr>
             )
         }
         return tabledata
+    }
+    function getCheckboxValue(){
+        console.log('checked')
     }
 
     return (
@@ -167,7 +210,7 @@ function Calendar(props) {
                                     <tr>
                                         <td colSpan='4'><button onClick={AddType}>Add</button></td>
                                     </tr>
-                                    
+
                                     {todotable()}
                                 </tbody>
 
@@ -207,3 +250,8 @@ export default Calendar;
 
 
 // * lastweek - 삼항연산자 의미 ; (1년 = 52주+몇일) => 마지막 주가 첫주로 표현될 때, 53주로 만들어주기 위해 사용 (아마)
+
+
+// * 09150010 HW ; 09-21날짜의 test 아이디에 해당하는 데이터 가져와서 띄우기 했음 
+// - 그런데 test함수에서 request보내서 데이터 받고싶었으나, 그 과정에서 오래 헤매었고 해결못함
+// 결론 ; todotable이라는 렌더링관련 함수에서 바로 request하고 출력시킴 => 웹이 지나치게 느려짐.. (현재상태)
