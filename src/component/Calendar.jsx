@@ -30,31 +30,16 @@ function Calendar(props) {
         }
 
     }, [])
-    const test = (e) => {
+    const getTodo = async (e) => {
         setReqdate(e.target.id);
         console.log(reqDate)
-
-        // axios.post('http://localhost:8080/todo/findTodo',{
-        //     id: "test",
-        //     date: "2021-09-21"
-        // })
-        // .then(function(response){
-        //     console.log(response.data);
-        //     let tempstring = [(response.data.exercise).split(', '), (response.data.done).split(','), (response.data.checked).split(',')]
-        //     //getvalue3(tempstring)
-        //     for(let i=0;i<tempstring[0].length;i++){
-        //         getvalue3(testsplit[0].push(tempstring[0][i]))
-        //         getvalue3(testsplit[1].push(tempstring[1][i]))
-        //         getvalue3(testsplit[2].push(tempstring[2][i]))
-        //     }
-     
-
-        // })
-        // .catch(function(error){
-        //     console.log(error);
-        // })
        
-
+        const param = {
+            id:"tester",
+            date:e.target.id
+        }
+        const data = await axios.post("http://localhost:8080/todo/findTodo", param);
+        console.log(data.data);
     }
     const inputExercise = (e) => {
         setExer(e.target.value)
@@ -86,28 +71,28 @@ function Calendar(props) {
                         let days = today.clone().startOf('year').week(week).startOf('week').add(index, 'day');   //index(0~6)로 day+index 하면서 한 주 기록
                         if (moment().format('YYYYMMDD') === days.format('YYYYMMDD')) {  //오늘
                             return (
-                                <td id={getDate.format('YYYY-MM-') + days.format('DD')} onClick={test} key={index} style={{ backgroundColor: '#FFEBFE' }}>
+                                <td id={getDate.format('YYYY-MM-') + days.format('DD')} onClick={getTodo} key={index} style={{ backgroundColor: '#FFEBFE' }}>
                                     {days.format('D')}
                                 </td>
                             );
                         } else if (days.format('MM') !== today.format('MM')) {  //이번 달 아닌 날짜
                             if (days.format('DD') > 20) {
                                 return (
-                                    <td id={getDate.format('YYYY-') + getDate.clone().subtract(1, 'month').format("MM-") + days.format('DD')} onClick={test} key={index} style={{ backgroundColor: '#F6F6F6' }}>
+                                    <td id={getDate.format('YYYY-') + getDate.clone().subtract(1, 'month').format("MM-") + days.format('DD')} onClick={getTodo} key={index} style={{ backgroundColor: '#F6F6F6' }}>
                                         {days.format('D')}
                                     </td>
                                 )
                             }
                             else if (days.format('DD') < 10) {
                                 return (
-                                    <td id={getDate.format('YYYY-') + getDate.clone().add(1, 'month').format("MM-") + days.format('DD')} onClick={test} key={index} style={{ backgroundColor: '#F6F6F6' }}>
+                                    <td id={getDate.format('YYYY-') + getDate.clone().add(1, 'month').format("MM-") + days.format('DD')} onClick={getTodo} key={index} style={{ backgroundColor: '#F6F6F6' }}>
                                         {days.format('D')}
                                     </td>
                                 )
                             }
                         } else {
                             return (
-                                <td id={getDate.format('YYYY-MM-') + days.format('DD')} onClick={test} key={index} >
+                                <td id={getDate.format('YYYY-MM-') + days.format('DD')} onClick={getTodo} key={index} >
                                     {days.format('D')}
                                 </td>
                             );
